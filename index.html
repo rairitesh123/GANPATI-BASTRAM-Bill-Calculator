@@ -81,7 +81,8 @@ function calculate() {
  }   
  let ans=parseFloat((text1*text2).toFixed(2));
  let gst=parseFloat(((ans*2.50)/100).toFixed(2));
- let gtotal=Math.round(ans+2*gst);
+ let gtotalworo=parseFloat((ans+2*gst).toFixed(2));
+ let gtotal=Math.round(gtotalworo);
  let roundoffvalue=gtotal-ans-gst-gst;
 document.forms["myform"]["total"].value = ans; 
 document.forms["myform"]["cgst"].value = gst;
