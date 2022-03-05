@@ -1,149 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="pdf.css" />
-    <script src="test.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
-	<link rel="preconnect" href="https://fonts.googleapis.com">
+<! DOCTYPE html>  
+<html>  
+<meta name="viewport" content="width=device-width, initial-scale=1">    
+<meta charset="UTF-8"> 
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>   
+<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Rowdies:wght@300&display=swap" rel="stylesheet">
+<title>GANPATI BASTRAM Invoice Generator</title>  
+        <script>function handleSubmit () {
+    const ino = document.getElementById('ino').value;
+    const date = document.getElementById('date').value;
+	const qty = document.getElementById('qty').value;
+    const rate = document.getElementById('rate').value;
+    
+	sessionStorage.setItem("INO", ino);
+    sessionStorage.setItem("DATE", date);
+    sessionStorage.setItem("QTY", qty);
+    sessionStorage.setItem("RATE", rate);
 
-</head>
+    return;
+}</script>   
+ <style>  
 
-<body><br><br>
-<center><button class="btn btn-success" id="download"><i class="fa fa-print"></i> Print Invoice</button></center><br><br>
-    <div class="container" id="invoice">
-<table class="table" style="background-color:white;border:1px solid black">
-  <tbody>
-    <tr style="font-size:10px;background-color:#fed866">
-      <th scope="col" colspan="2" >GST No: 09BQRPS0880E1ZC</th>
-	  <th scope="col" colspan="2"  class="text-center" style="font-size:13px;">TAX INVOICE</th>
-      <th scope="col" colspan="2"  class="text-right">ORIGINAL COPY</th>
-    </tr>
-    <tr style="background-color:#fed866">
-      <td  class="text-center" colspan="6"><h4><i class="fa fa-book" style="font-size:28px;"></i> GANPATI BASTRAM</h4></td>
-    </tr>
-    <tr style="font-size:10px;background-color:#fed866">
-      <td colspan="2" >Maniyaripur, Sattanpur Road, Varanasi - 221405<br>State Name: Uttar Pradesh, Code: 09</td>
-      <td colspan="4"  class="text-right">Phone No: 9415446012, 8299240911<br>Email: ganpatibastram@gmail.com</td>
-    </tr>
-    <tr style="font-size:10px">
-      <td colspan="3" style="border-right:1px solid black">To,<br>
-D’BSTRAM BHATTHI<br>
-LOHATA VARANASI - 221107<br>
-GSTIN - 0 9 B F S P S 1 6 4 3 K 1 Z Q
-<br>
-</td>
-      <td colspan="2" class="text-center" style="border-right:1px solid black"><b>Invoice No.</b><br><br><b id="ino"></b></td>
-	  <td colspan="1" class="text-center"><b>Date</b><br><br><b id="date"></b></td>
-    </tr>
-
-    <tr style="font-size:10px">
-      <th scope="col" style="border-right:1px solid black">S. No.</th>
-      <th scope="col" style="border-right:1px solid black">Particulars</th>
-	  <th scope="col" style="border-right:1px solid black">HSN_Code</th>
-      <th scope="col" style="border-right:1px solid black">Qty.</th>
-	  <th scope="col" style="border-right:1px solid black">Rate</th>
-      <th scope="col">Amount</th>
-    </tr>
-
-    <tr style="font-size:10px">
-      <td style="border-right:1px solid black">1</td>
-	  <td style="border-right:1px solid black">Fancy Fabric Rapier Jacquard (44 inches)</td>
-	  <td style="border-right:1px solid black">5407</td>
-	  <td style="border-right:1px solid black" id="qty"></td>
-	  <td style="border-right:1px solid black" id="rate"></td>
-	  <td id="total"></td>
-    </tr>
-    <tr>
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td></td>
-    </tr>
-    <tr>
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td></td>
-    </tr>
-    <tr>
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td></td>
-    </tr>
-    <tr style="font-size:10px;">
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td colspan="3" style="border-right:1px solid black">Total</td>
-	  <td id="total"></td>
-    </tr>
-    <tr style="font-size:10px">
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td colspan="3" style="border-right:1px solid black">Less Discount</td>
-	  <td></td>
-    </tr>
-    <tr style="font-size:10px">
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td colspan="3" style="border-right:1px solid black">Total Taxable Amount</td>
-	  <td></td>
-    </tr>
-    <tr style="font-size:10px">
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td colspan="3" style="border-right:1px solid black">CGST @ 2.5 %</td>
-	  <td id="cgst"></td>
-    </tr>
-    <tr style="font-size:10px">
-      <td style="border-right:1px solid black"></td>
-	  <td style="border-right:1px solid black"></td>
-	  <td colspan="3" style="border-right:1px solid black">SGST @ 2.5 %</td>
-	  <td id="sgst"></td>
-    </tr>
-    <tr style="font-size:10px">
-      <td colspan="2" style="border-right:1px solid black">Mode of Transportation: Self</td>
-	  <td colspan="3" style="border-right:1px solid black">GST @</td>
-	  <td></td>
-    </tr>
-    <tr style="font-size:10px">
-      <td colspan="2" style="border-right:1px solid black">No. of Bundle(s):</td>
-	  <td colspan="3" style="border-right:1px solid black">Round Off</td>
-	  <td><span id="roundoff"/></td>
-    </tr>
-    <tr style="font-size:10px">
-      <td colspan="2" style="border-right:1px solid black">Rs. (in words): Rupees <span id="gtotalinwords"/> Only</td>
-	  <td colspan="3"style="background-color:black;color:white;border-right:1px solid black">Grand Total</td>
-	  <td><span id="grandtotalwro"/></td>
-    </tr>
-    <tr style="font-size:8px">
-      <td colspan="2" style="border-right:1px solid black">Terms & Conditions<br>
-1. E & O.E.<br>
-2. Goods once sold will not be taken back.<br>
-3. No guarantee for cloth, color, & zari, etc.<br>
-4. Subject to Varanasi Jurisdiction only.</td>
-	  <td colspan="4" class="text-center"><b style="font-size:15px">For: GANPATI BASTRAM</b><br><br><br><br>
-<b>Authorised Signature</b></td>
-    </tr>
-  </tbody>
-</table>
+  body{background-color:#9de356;font-family: 'Rowdies', cursive;}
+  label{font-size:20px;}
+  hr{border: 3px solid black;}
+  form{border: 2px solid black;
+  padding:20px;}
+</style>
+ </head>  
+<body>  
+<div class="container">
+<h1 class="text-center"> GANPATI BASTRAM Invoice Generator </h1> 
+<h5 class="text-center">Maniyaripur, Sattanpur, Varanasi - 221405</h5> <br> 
+<form  action="invoicepdf.html" method="POST">
+  <h2 class="text-center"> INPUT </h2> <br> 
+ <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Enter Invoice Number</label>
+      <input type="text" class="form-control" name="ino" id="ino"/>
     </div>
-
-</body>
-
-</html>
+    <div class="form-group col-md-6">
+      <label>Invoice Date</label>
+      <input type="date" class="form-control" name="date" id="date"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Enter Quantity</label>
+      <input type="text" class="form-control" name="qty" id="qty"/>
+    </div>
+    <div class="form-group col-md-6">
+      <label>Enter Rate</label>
+      <input type="text" class="form-control" name="rate" id="rate"/>
+    </div>
+    <div class="form-group col-md-6">
+      <input class="btn btn-primary" type="submit" onclick="handleSubmit()">
+    </div>
+  </div>
+  </div>
+</form>
+<br><h5 class="text-center">Managed & Calculated by - Sushil Kumar Singh</h5>
+</div>
+ 
+</body>  
+</html>  
