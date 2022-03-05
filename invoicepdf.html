@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Invoice Generated - GANPATI BASTRAM</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" crossorigin="anonymous">
+    <script src="invoicepdf.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body {
+    margin: 0;
+    font-family: 'Comfortaa', cursive;
+    font-size: .8125rem;
+    font-weight: 400;
+    line-height: 1.5385;
+    color: #333;
+    text-align: left;
+    background-color: #eee
+}
+
+.mt-50 {
+    margin-top: 50px
+}
+
+.mb-50 {
+    margin-bottom: 50px
+}
+
+.card {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid black;
+    border-radius: .1875rem
+}
+
+.card-img-actions {
+    position: relative
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    text-align: center;
+	background-color:#fed966;
+}
+.card-body ul li{
+    font-size:10px;
+}
+
+.card-title {
+    margin-top: 10px;
+    font-size: 17px
+}
+
+.invoice-color {
+    color: red !important
+}
+
+.card-header {
+	padding-bottom: 0;
+	background-color:#fed966;
+    border-bottom: 1px solid black;
+}
+
+a {
+    text-decoration: none !important
+}
+
+.btn-light {
+    color: #333;
+    background-color: #fafafa;
+    border-color: #ddd
+}
+
+.header-elements-inline {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap
+}
+
+@media (min-width: 768px) {
+    .wmin-md-400 {
+        min-width: 400px !important
+    }
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #2196f3
+}
+
+.btn-labeled>b {
+    position: absolute;
+    top: -1px;
+    background-color: blue;
+    display: block;
+    line-height: 1;
+    padding: .62503rem
+}
+</style>
+</head>
+
+<body><br><br>
+<center><button class="btn btn-success" id="download"><i class="fa fa-print"></i> Print Invoice</button></center><br><br>
+    <div class="container" id="invoice">
+<table class="table" style="background-color:white;border:1px solid black">
+  <tbody>
+    <tr style="font-size:10px;background-color:#fed866">
+      <th scope="col" colspan="2" >GST No: 09BQRPS0880E1ZC</th>
+	  <th scope="col" colspan="2"  class="text-center" style="font-size:13px;">TAX INVOICE</th>
+      <th scope="col" colspan="2"  class="text-right">ORIGINAL COPY</th>
+    </tr>
+    <tr style="background-color:#fed866">
+      <td  class="text-center" colspan="6"><h4><i class="fa fa-book" style="font-size:28px;"></i> GANPATI BASTRAM</h4></td>
+    </tr>
+    <tr style="font-size:10px;background-color:#fed866">
+      <td colspan="2" >Maniyaripur, Sattanpur Road, Varanasi - 221405<br>State Name: Uttar Pradesh, Code: 09</td>
+      <td colspan="4"  class="text-right">Phone No: 9415446012, 8299240911<br>Email: ganpatibastram@gmail.com</td>
+    </tr>
+    <tr style="font-size:10px">
+      <td colspan="3" style="border-right:1px solid black">To,<br>
+D’BSTRAM BHATTHI<br>
+LOHATA VARANASI - 221107<br>
+GSTIN - 0 9 B F S P S 1 6 4 3 K 1 Z Q
+<br>
+</td>
+      <td colspan="2" class="text-center" style="border-right:1px solid black"><b>Invoice No.</b><br><br><b id="ino"></b></td>
+	  <td colspan="1" class="text-center"><b>Date</b><br><br><b id="date"></b></td>
+    </tr>
+
+    <tr style="font-size:10px">
+      <th scope="col" style="border-right:1px solid black">S. No.</th>
+      <th scope="col" style="border-right:1px solid black">Particulars</th>
+	  <th scope="col" style="border-right:1px solid black">HSN_Code</th>
+      <th scope="col" style="border-right:1px solid black">Qty.</th>
+	  <th scope="col" style="border-right:1px solid black">Rate</th>
+      <th scope="col">Amount</th>
+    </tr>
+
+    <tr style="font-size:10px">
+      <td style="border-right:1px solid black">1</td>
+	  <td style="border-right:1px solid black">Fancy Fabric Rapier Jacquard (44 inches)</td>
+	  <td style="border-right:1px solid black">5407</td>
+	  <td style="border-right:1px solid black" id="qty"></td>
+	  <td style="border-right:1px solid black" id="rate"></td>
+	  <td id="total"></td>
+    </tr>
+    <tr>
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td></td>
+    </tr>
+    <tr>
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td></td>
+    </tr>
+    <tr>
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td></td>
+    </tr>
+    <tr style="font-size:10px;">
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td colspan="3" style="border-right:1px solid black">Total</td>
+	  <td id="total"></td>
+    </tr>
+    <tr style="font-size:10px">
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td colspan="3" style="border-right:1px solid black">Less Discount</td>
+	  <td></td>
+    </tr>
+    <tr style="font-size:10px">
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td colspan="3" style="border-right:1px solid black">Total Taxable Amount</td>
+	  <td></td>
+    </tr>
+    <tr style="font-size:10px">
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td colspan="3" style="border-right:1px solid black">CGST @ 2.5 %</td>
+	  <td id="cgst"></td>
+    </tr>
+    <tr style="font-size:10px">
+      <td style="border-right:1px solid black"></td>
+	  <td style="border-right:1px solid black"></td>
+	  <td colspan="3" style="border-right:1px solid black">SGST @ 2.5 %</td>
+	  <td id="sgst"></td>
+    </tr>
+    <tr style="font-size:10px">
+      <td colspan="2" style="border-right:1px solid black">Mode of Transportation: Self</td>
+	  <td colspan="3" style="border-right:1px solid black">GST @</td>
+	  <td></td>
+    </tr>
+    <tr style="font-size:10px">
+      <td colspan="2" style="border-right:1px solid black">No. of Bundle(s):</td>
+	  <td colspan="3" style="border-right:1px solid black">Round Off</td>
+	  <td><span id="roundoff"/></td>
+    </tr>
+    <tr style="font-size:10px">
+      <td colspan="2" style="border-right:1px solid black">Rs. (in words): Rupees <span id="gtotalinwords"/> Only</td>
+	  <td colspan="3"style="background-color:black;color:white;border-right:1px solid black">Grand Total</td>
+	  <td><span id="grandtotalwro"/></td>
+    </tr>
+    <tr style="font-size:8px">
+      <td colspan="2" style="border-right:1px solid black">Terms & Conditions<br>
+1. E & O.E.<br>
+2. Goods once sold will not be taken back.<br>
+3. No guarantee for cloth, color, & zari, etc.<br>
+4. Subject to Varanasi Jurisdiction only.</td>
+	  <td colspan="4" class="text-center"><b style="font-size:15px">For: GANPATI BASTRAM</b><br><br><br><br>
+<b>Authorised Signature</b></td>
+    </tr>
+  </tbody>
+</table>
+    </div>
+
+</body>
+
+</html>
