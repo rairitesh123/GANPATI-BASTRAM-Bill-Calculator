@@ -15,10 +15,11 @@ console.log(ans)
     document.getElementById('date').innerHTML = date;
     document.getElementById('qty').innerHTML = qty;
     document.getElementById('rate').innerHTML = rate;
+	document.getElementById('amount').innerHTML = ans;
 	document.getElementById('total').innerHTML = ans;
     document.getElementById('cgst').innerHTML = gst;
 	document.getElementById('sgst').innerHTML = gst;
-    document.getElementById('grandtotalworo').innerHTML = gtotalworo;
+    // document.getElementById('grandtotalworo').innerHTML = gtotalworo;
 	document.getElementById('grandtotalwro').innerHTML = gtotal;
     document.getElementById('roundoff').innerHTML = roundoffvalue.toFixed(2);
 
